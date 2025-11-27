@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Contact - Sims Hub</title>
+
+<style>
+/* ———————————————————— */
+/* TON CSS D’ORIGINE */
+/* ———————————————————— */
+
+:root {
+    --primary: #00a896;
+    --primary-dark: #028090;
+    --secondary: #05668d;
+    --accent: #02c39a;
+    --light: #f0f3f5;
+    --dark: #1a1d2b;
+    --gray: #6c757d;
+    --border-radius: 12px;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    --transition: all 0.3s ease;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    color: #333;
+    background-color: #f9fafb;
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: var(--dark);
+}
+
+/* Header */
+header {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 1.5rem 0;
+    box-shadow: var(--shadow);
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+    padding: 0.5rem 0;
+}
+
+nav a:hover,
+nav a.active {
+    color: var(--accent);
+}
+
+/* ———————————————————— */
+/* STYLE SPÉCIAL PAGE CONTACT */
+/* ———————————————————— */
+
+.page-header {
+    background: linear-gradient(135deg, var(--primary-dark), var(--secondary));
+    color: white;
+    padding: 3rem 0;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.contact-section {
+    padding: 3rem 0;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+    gap: 2rem;
+}
+
+.contact-card {
+    background-color: white;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+.contact-card h3 {
+    margin-bottom: 1rem;
+}
+
+.contact-info p {
+    margin-bottom: .7rem;
+    font-size: 1.05rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 0.9rem;
+    margin-bottom: 1rem;
+    border-radius: var(--border-radius);
+    border: 1px solid #ddd;
+    font-size: 1rem;
+}
+
+.btn {
+    background-color: var(--accent);
+    color: white;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.btn:hover {
+    background-color: var(--primary);
+    transform: translateY(-3px);
+}
+
+/* ———————————————————— */
+/* MODAL */
+/* ———————————————————— */
+
+#modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.modal-box {
+    background: white;
+    padding: 2rem;
+    text-align: center;
+    border-radius: var(--border-radius);
+    width: 90%;
+    max-width: 400px;
+    box-shadow: var(--shadow);
+}
+
+.modal-box h3 {
+    margin-bottom: 1rem;
+    color: var(--primary);
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="container header-content">
+        <h2>Sims Hub</h2>
+        <nav>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="mods.html">Mods</a></li>
+                <li><a href="contenu.html">Contenu</a></li>
+                <li><a href="constructions.html">Constructions</a></li>
+                <li><a href="createurs.html">Créateurs</a></li>
+                <li><a href="quiz.html">Quiz</a></li>
+                <li><a class="active" href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- HEADER PAGE -->
+<div class="page-header">
+    <div class="container">
+        <h1>Contact</h1>
+        <p>Créateurs, joueurs, besoin d’aide ou d’informations ? Contactez-nous facilement.</p>
+    </div>
+</div>
+
+<!-- SECTION CONTACT -->
+<section class="contact-section">
+    <div class="container contact-grid">
+
+        <!-- CARTE INFO -->
+        <div class="contact-card contact-info">
+            <h3>Nos contacts</h3>
+            <p><strong>Téléphone :</strong><br> +241 74 41 53 88<br> +241 76 50 80 77</p>
+            <p><strong>Email :</strong><br> simshub.contact@gmail.com</p>
+            <p><strong>Disponible :</strong><br> 7j/7 — 9h → 22h</p>
+        </div>
+
+        <!-- FORMULAIRE -->
+        <div class="contact-card contact-form">
+            <h3>Envoyer un message</h3>
+
+            <form id="contactForm">
+                <input type="text" id="name" placeholder="Votre nom" required>
+                <input type="email" id="email" placeholder="Votre email" required>
+                <textarea id="message" rows="6" placeholder="Votre message..." required></textarea>
+                <button class="btn" type="submit">Envoyer</button>
+            </form>
+        </div>
+
+    </div>
+</section>
+
+<!-- MODAL -->
+<div id="modal">
+    <div class="modal-box">
+        <h3>Merci !</h3>
+        <p>Votre message a bien été réceptionné 🎉</p>
+        <button class="btn" onclick="closeModal()">Fermer</button>
+    </div>
+</div>
+
+
+<script>
+/* Gestion du modal */
+const modal = document.getElementById("modal");
+const form = document.getElementById("contactForm");
+
+form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    modal.style.display = "flex";
+    form.reset();
+});
+
+function closeModal() {
+    modal.style.display = "none";
+}
+</script>
+
+</body>
+</html>
