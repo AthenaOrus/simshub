@@ -1,0 +1,1772 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plumbob Nexus • Hub Officiel Sims 4</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #00a896;
+            --primary-dark: #028090;
+            --secondary: #05668d;
+            --accent: #02c39a;
+            --light: #f0f3f5;
+            --dark: #1a1d2b;
+            --gray: #6c757d;
+            --border-radius: 12px;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: #333;
+            background-color: #f9fafb;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+            color: var(--accent);
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .logo-subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: -5px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        nav a.active {
+            color: var(--accent);
+        }
+
+        nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--accent);
+            border-radius: 3px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(26, 29, 43, 0.85), rgba(26, 29, 43, 0.9)), url('https://images.unsplash.com/photo-1622547748225-3fc4abd2cca0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 6rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .btn:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid white;
+        }
+
+        .btn-outline:hover {
+            background-color: white;
+            color: var(--dark);
+        }
+
+        .btn-small {
+            padding: 0.6rem 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .btn-large {
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 5rem 0;
+            background-color: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent);
+            border-radius: 2px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 2.5rem 2rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+            border-top: 4px solid var(--accent);
+            position: relative;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .feature-link:hover {
+            color: var(--accent);
+            gap: 0.8rem;
+        }
+
+        /* Content Sections */
+        .content-section {
+            padding: 5rem 0;
+        }
+
+        .section-alt {
+            background-color: #f5f7fa;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .content-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-badge {
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background-color: var(--accent);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .content-card h3 {
+            margin-bottom: 1rem;
+        }
+
+        .card-meta {
+            display: flex;
+            gap: 1rem;
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .card-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .card-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .card-link:hover {
+            color: var(--accent);
+            gap: 0.8rem;
+        }
+
+        .section-cta {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 1.5rem;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary-dark), var(--secondary));
+            color: white;
+            padding: 3rem 0;
+        }
+
+        .breadcrumb {
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .breadcrumb span {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .page-header h1 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+        }
+
+        /* Categories Grid */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .category-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-decoration: none;
+            color: inherit;
+            text-align: center;
+            border: 2px solid transparent;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .category-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .category-card h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .category-card p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Mods Grid */
+        .mods-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .mod-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .mod-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .mod-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .mod-header h3 {
+            margin-bottom: 0;
+            flex: 1;
+        }
+
+        .mod-version {
+            background-color: var(--light);
+            color: var(--gray);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .mod-description {
+            margin-bottom: 1.5rem;
+            color: var(--gray);
+        }
+
+        .mod-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .mod-author {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .mod-downloads {
+            color: var(--gray);
+        }
+
+        .mod-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .btn-link:hover {
+            color: var(--accent);
+        }
+
+        /* Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            position: relative;
+            height: 220px;
+            box-shadow: var(--shadow);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            color: white;
+            padding: 1.5rem;
+            transform: translateY(10px);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Creators */
+        .creators-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .creator-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .creator-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .creator-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .creator-info h4 {
+            margin-bottom: 0.3rem;
+        }
+
+        .creator-info p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Quiz */
+        .quiz-container {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background-color: var(--light);
+            border-radius: 4px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background-color: var(--accent);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .question {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .option {
+            padding: 1rem 1.5rem;
+            background-color: var(--light);
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .option:hover {
+            background-color: #e8ecef;
+        }
+
+        .option.selected {
+            border-color: var(--accent);
+            background-color: rgba(2, 195, 154, 0.1);
+        }
+
+        .quiz-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .result {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .result h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .result-score {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin: 1.5rem 0;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column a {
+            color: #b0b7c3;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-column a:hover {
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #b0b7c3;
+            font-size: 0.9rem;
+        }
+
+        /* Page Content */
+        .page-content {
+            display: none;
+        }
+
+        .page-content.active {
+            display: block;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            nav ul {
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero {
+                padding: 4rem 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 250px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .content-card, .feature-card, .mod-card {
+                padding: 1.5rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .stat-number {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="#" data-page="home">
+                        <div class="logo-icon">
+                            <i class="fas fa-diamond"></i>
+                        </div>
+                        <div>
+                            <div class="logo-text">PLUMBOB NEXUS</div>
+                            <div class="logo-subtitle">Hub Officiel Sims 4</div>
+                        </div>
+                    </a>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#" class="nav-link active" data-page="home">Accueil</a></li>
+                        <li><a href="#" class="nav-link" data-page="mods">Mods</a></li>
+                        <li><a href="#" class="nav-link" data-page="cc">Contenu</a></li>
+                        <li><a href="#" class="nav-link" data-page="builds">Constructions</a></li>
+                        <li><a href="#" class="nav-link" data-page="creators">Créateurs</a></li>
+                        <li><a href="#" class="nav-link" data-page="quiz">Quiz</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page d'accueil -->
+    <div id="home" class="page-content active">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>Votre Hub Ultime pour Les Sims 4</h1>
+                <p>Découvrez les meilleurs mods, contenus personnalisés, astuces et créations de la communauté Sims.</p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn" data-page="mods">Explorer les Mods</a>
+                    <a href="#" class="btn btn-outline" data-page="creators">Découvrir les Créateurs</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Pourquoi Choisir Plumbob Nexus ?</h2>
+                    <p>La ressource complète pour tous les fans des Sims 4</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-puzzle-piece"></i>
+                        </div>
+                        <h3>Mods Vérifiés</h3>
+                        <p>Tous nos mods sont testés et compatibles avec les dernières mises à jour du jeu.</p>
+                        <a href="#" class="feature-link" data-page="mods">Voir les mods <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <h3>Contenu Créatif</h3>
+                        <p>Des milliers de créations uniques partagées par notre communauté talentueuse.</p>
+                        <a href="#" class="feature-link" data-page="cc">Explorer le contenu <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3>Tutoriels & Astuces</h3>
+                        <p>Apprenez les techniques avancées pour améliorer votre expérience de jeu.</p>
+                        <a href="#" class="feature-link" data-page="builds">Apprendre <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Latest Content -->
+        <section class="content-section section-alt">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Contenu Récent</h2>
+                    <p>Découvrez les dernières ajouts de la communauté</p>
+                </div>
+                
+                <div class="content-grid">
+                    <div class="content-card">
+                        <div class="card-badge">Nouveau</div>
+                        <h3>Mods du Mois</h3>
+                        <p>Découvrez les mods les plus populaires du moment.</p>
+                        <div class="card-meta">
+                            <span><i class="far fa-calendar"></i> 15 Nov. 2023</span>
+                            <span><i class="far fa-folder"></i> Gameplay</span>
+                        </div>
+                        <a href="#" class="card-link" data-page="mods">Voir la liste <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    
+                    <div class="content-card">
+                        <div class="card-badge">Populaire</div>
+                        <h3>Constructions Inspirantes</h3>
+                        <p>Les meilleures créations architecturales de la communauté.</p>
+                        <div class="card-meta">
+                            <span><i class="far fa-calendar"></i> 12 Nov. 2023</span>
+                            <span><i class="far fa-folder"></i> Builds</span>
+                        </div>
+                        <a href="#" class="card-link" data-page="builds">Voir les builds <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    
+                    <div class="content-card">
+                        <div class="card-badge">Tendance</div>
+                        <h3>Créateurs à Suivre</h3>
+                        <p>Les artistes les plus talentueux du moment.</p>
+                        <div class="card-meta">
+                            <span><i class="far fa-calendar"></i> 10 Nov. 2023</span>
+                            <span><i class="far fa-folder"></i> CC</span>
+                        </div>
+                        <a href="#" class="card-link" data-page="creators">Découvrir <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="section-cta">
+                    <a href="#" class="btn btn-large" data-page="cc">Voir Tout le Contenu</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Community Stats -->
+        <section class="stats-section">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">5,000+</div>
+                        <div class="stat-label">Mods Vérifiés</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">2,500+</div>
+                        <div class="stat-label">Créateurs Actifs</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">50,000+</div>
+                        <div class="stat-label">Membres</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">100,000+</div>
+                        <div class="stat-label">Téléchargements</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Page Mods -->
+    <div id="mods" class="page-content">
+        <!-- Page Header -->
+        <section class="page-header">
+            <div class="container">
+                <div class="breadcrumb">
+                    <a href="#" data-page="home">Accueil</a> / <span>Mods</span>
+                </div>
+                <h1>Mods pour Les Sims 4</h1>
+                <p>Améliorez votre expérience de jeu avec nos mods vérifiés et régulièrement mis à jour</p>
+            </div>
+        </section>
+
+        <!-- Mods Categories -->
+        <section class="content-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Catégories de Mods</h2>
+                    <p>Choisissez le type de mods qui vous intéresse</p>
+                </div>
+                
+                <div class="categories-grid">
+                    <a href="#gameplay" class="category-card">
+                        <div class="category-icon">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <h3>Gameplay</h3>
+                        <p>Mods qui améliorent le gameplay de base</p>
+                    </a>
+                    
+                    <a href="#cas" class="category-card">
+                        <div class="category-icon">
+                            <i class="fas fa-user-edit"></i>
+                        </div>
+                        <h3>CAS & Apparence</h3>
+                        <p>Mods pour le Create-A-Sim</p>
+                    </a>
+                    
+                    <a href="#build" class="category-card">
+                        <div class="category-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <h3>Construction</h3>
+                        <p>Outils et améliorations pour le mode construction</p>
+                    </a>
+                    
+                    <a href="#realism" class="category-card">
+                        <div class="category-icon">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <h3>Réalisme</h3>
+                        <p>Mods qui ajoutent du réalisme au jeu</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gameplay Mods -->
+        <section class="content-section section-alt" id="gameplay">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Mods de Gameplay</h2>
+                    <p>Les mods essentiels pour enrichir votre expérience de jeu</p>
+                </div>
+                
+                <div class="mods-grid">
+                    <div class="mod-card">
+                        <div class="mod-header">
+                            <h3>MC Command Center</h3>
+                            <span class="mod-version">v2023.5.1</span>
+                        </div>
+                        <p class="mod-description">Le mod ultime pour contrôler tous les aspects de votre jeu, des relations à la progression des carrières.</p>
+                        <div class="mod-meta">
+                            <span class="mod-author">Deaderpool</span>
+                            <span class="mod-downloads">2.5M+</span>
+                        </div>
+                        <div class="mod-actions">
+                            <a href="#" class="btn btn-small">Télécharger</a>
+                            <a href="#" class="btn-link">Détails</a>
+                        </div>
+                    </div>
+                    
+                    <div class="mod-card">
+                        <div class="mod-header">
+                            <h3>UI Cheats Extension</h3>
+                            <span class="mod-version">v1.36</span>
+                        </div>
+                        <p class="mod-description">Modifie l'interface utilisateur pour permettre des triches rapides en cliquant simplement.</p>
+                        <div class="mod-meta">
+                            <span class="mod-author">Weerbesu</span>
+                            <span class="mod-downloads">1.8M+</span>
+                        </div>
+                        <div class="mod-actions">
+                            <a href="#" class="btn btn-small">Télécharger</a>
+                            <a href="#" class="btn-link">Détails</a>
+                        </div>
+                    </div>
+                    
+                    <div class="mod-card">
+                        <div class="mod-header">
+                            <h3>WonderfulWhims</h3>
+                            <span class="mod-version">v1.8.3</span>
+                        </div>
+                        <p class="mod-description">Système d'attraction et de menstruation pour un gameplay plus réaliste et immersif.</p>
+                        <div class="mod-meta">
+                            <span class="mod-author">Turbodriver</span>
+                            <span class="mod-downloads">1.2M+</span>
+                        </div>
+                        <div class="mod-actions">
+                            <a href="#" class="btn btn-small">Télécharger</a>
+                            <a href="#" class="btn-link">Détails</a>
+                        </div>
+                    </div>
+                    
+                    <div class="mod-card">
+                        <div class="mod-header">
+                            <h3>Slice of Life</h3>
+                            <span class="mod-version">v2.0</span>
+                        </div>
+                        <p class="mod-description">Ajoute des systèmes de santé, d'émotions et d'interactions sociales plus profonds.</p>
+                        <div class="mod-meta">
+                            <span class="mod-author">KawaiiStacie</span>
+                            <span class="mod-downloads">950K+</span>
+                        </div>
+                        <div class="mod-actions">
+                            <a href="#" class="btn btn-small">Télécharger</a>
+                            <a href="#" class="btn-link">Détails</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Page Contenu Personnalisé -->
+    <div id="cc" class="page-content">
+        <!-- Page Header -->
+        <section class="page-header">
+            <div class="container">
+                <div class="breadcrumb">
+                    <a href="#" data-page="home">Accueil</a> / <span>Contenu Personnalisé</span>
+                </div>
+                <h1>Contenu Personnalisé pour Les Sims 4</h1>
+                <p>Découvrez des milliers de créations uniques pour personnaliser votre jeu</p>
+            </div>
+        </section>
+
+        <!-- CC Categories -->
+        <section class="content-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Types de Contenu</h2>
+                    <p>Explorez les différentes catégories de contenu personnalisé</p>
+                </div>
+                
+                <div class="categories-grid">
+                    <a href="#" class="category-card">
+                        <div class="category-icon">
+                            <i class="fas fa-tshirt"></i>
+                        </div>
+                        <h3>Vêtements</h3>
+                        <p>Styles vestimentaires pour tous les goûts</p>
+                    </a>
+                    
+                    <a href="#" class="category-card">
+                        <div class="category-icon">
+                            <i class="fas fa-cut"></i>
+                        </div>
+                        <h3>Cheveux</h3>
+                        <p>Coiffures réalistes et stylisées</p>
+                    </a>
+                    
+                    <a href="#" class="category-card">
+                        <div class="category-icon">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <h3>Maquillage</h3>
+                        <p>Produits de beauté et textures peau</p>
+                    </a>
+                    
+                    <a href="#" class="category-card">
+                        <div class="category-icon">
+                            <i class="fas fa-couch"></i>
+                        </div>
+                        <h3>Meubles</h3>
+                        <p>Décoration intérieure et extérieure</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Popular CC -->
+        <section class="content-section section-alt">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Contenu Populaire</h2>
+                    <p>Les créations les plus téléchargées cette semaine</p>
+                </div>
+                
+                <div class="mods-grid">
+                    <div class="mod-card">
+                        <div class="mod-header">
+                            <h3>Collection Printemps 2023</h3>
+                            <span class="mod-version">Maxis Match</span>
+                        </div>
+                        <p class="mod-description">Une collection complète de vêtements printaniers dans le style Maxis Match.</p>
+                        <div class="mod-meta">
+                            <span class="mod-author">GreenLlamas</span>
+                            <span class="mod-downloads">45K+</span>
+                        </div>
+                        <div class="mod-actions">
+                            <a href="#" class="btn btn-small">Télécharger</a>
+                            <a href="#" class="btn-link">Détails</a>
+                        </div>
+                    </div>
+                    
+                    <div class="mod-card">
+                        <div class="mod-header">
+                            <h3>Peau Réaliste HD</h3>
+                            <span class="mod-version">Alpha</span>
+                        </div>
+                        <p class="mod-description">Textures de peau haute définition avec détails réalistes.</p>
+                        <div class="mod-meta">
+                            <span class="mod-author">NorthernSiberia</span>
+                            <span class="mod-downloads">38K+</span>
+                        </div>
+                        <div class="mod-actions">
+                            <a href="#" class="btn btn-small">Télécharger</a>
+                            <a href="#" class="btn-link">Détails</a>
+                        </div>
+                    </div>
+                    
+                    <div class="mod-card">
+                        <div class="mod-header">
+                            <h3>Meubles Scandinaves</h3>
+                            <span class="mod-version">Set Complet</span>
+                        </div>
+                        <p class="mod-description">Collection de meubles design scandinave pour intérieurs modernes.</p>
+                        <div class="mod-meta">
+                            <span class="mod-author">Peacemaker</span>
+                            <span class="mod-downloads">32K+</span>
+                        </div>
+                        <div class="mod-actions">
+                            <a href="#" class="btn btn-small">Télécharger</a>
+                            <a href="#" class="btn-link">Détails</a>
+                        </div>
+                    </div>
+                    
+                    <div class="mod-card">
+                        <div class="mod-header">
+                            <h3>Coiffures Naturelles</h3>
+                            <span class="mod-version">10 Styles</span>
+                        </div>
+                        <p class="mod-description">Pack de coiffures naturelles et réalistes pour diversité capillaire.</p>
+                        <div class="mod-meta">
+                            <span class="mod-author">Simstrouble</span>
+                            <span class="mod-downloads">28K+</span>
+                        </div>
+                        <div class="mod-actions">
+                            <a href="#" class="btn btn-small">Télécharger</a>
+                            <a href="#" class="btn-link">Détails</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Page Constructions -->
+    <div id="builds" class="page-content">
+        <!-- Page Header -->
+        <section class="page-header">
+            <div class="container">
+                <div class="breadcrumb">
+                    <a href="#" data-page="home">Accueil</a> / <span>Constructions</span>
+                </div>
+                <h1>Constructions Inspirantes</h1>
+                <p>Découvrez les créations architecturales les plus impressionnantes de la communauté</p>
+            </div>
+        </section>
+
+        <!-- Builds Gallery -->
+        <section class="content-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Galerie de Constructions</h2>
+                    <p>Des builds uniques partagés par des constructeurs talentueux</p>
+                </div>
+                
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600" alt="Mansion Moderne">
+                        <div class="gallery-overlay">
+                            <h4>Mansion Moderne</h4>
+                            <p>SimLicy • 5 chambres, 4 salles de bain</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=600" alt="Maison Japonaise">
+                        <div class="gallery-overlay">
+                            <h4>Maison Japonaise Zen</h4>
+                            <p>KawaiiStacie • Snowy Escape</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1580587776463-2c3b03d18e79?w=600" alt="Cottage de Sorcière">
+                        <div class="gallery-overlay">
+                            <h4>Cottage de Sorcière</h4>
+                            <p>Plumbella • Realm of Magic</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=600" alt="Appartement Parisien">
+                        <div class="gallery-overlay">
+                            <h4>Appartement Parisien</h4>
+                            <p>Simsational • City Living</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Build Tips -->
+        <section class="content-section section-alt">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Astuces de Construction</h2>
+                    <p>Conseils pour améliorer vos compétences en construction</p>
+                </div>
+                
+                <div class="content-grid">
+                    <div class="content-card">
+                        <h3>Utilisation du TOOL Mod</h3>
+                        <p>Apprenez à utiliser le mod TOOL pour des placements d'objets avancés et des constructions uniques.</p>
+                        <div class="card-meta">
+                            <span><i class="far fa-clock"></i> 15 min</span>
+                            <span><i class="far fa-folder"></i> Avancé</span>
+                        </div>
+                        <a href="#" class="card-link">Lire le tutoriel <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    
+                    <div class="content-card">
+                        <h3>Landscaping Réaliste</h3>
+                        <p>Créez des jardins et extérieurs réalistes avec nos techniques de landscaping.</p>
+                        <div class="card-meta">
+                            <span><i class="far fa-clock"></i> 10 min</span>
+                            <span><i class="far fa-folder"></i> Intermédiaire</span>
+                        </div>
+                        <a href="#" class="card-link">Lire le tutoriel <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    
+                    <div class="content-card">
+                        <h3>Optimisation des Builds</h3>
+                        <p>Conseils pour créer des constructions magnifiques sans ralentir votre jeu.</p>
+                        <div class="card-meta">
+                            <span><i class="far fa-clock"></i> 12 min</span>
+                            <span><i class="far fa-folder"></i> Tous niveaux</span>
+                        </div>
+                        <a href="#" class="card-link">Lire le tutoriel <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Page Créateurs -->
+    <div id="creators" class="page-content">
+        <!-- Page Header -->
+        <section class="page-header">
+            <div class="container">
+                <div class="breadcrumb">
+                    <a href="#" data-page="home">Accueil</a> / <span>Créateurs</span>
+                </div>
+                <h1>Créateurs de Contenu</h1>
+                <p>Découvrez les artistes talentueux derrière vos mods et CC préférés</p>
+            </div>
+        </section>
+
+        <!-- Featured Creators -->
+        <section class="content-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Créateurs en Vedette</h2>
+                    <p>Les artistes les plus influents de la communauté Sims</p>
+                </div>
+                
+                <div class="creators-grid">
+                    <div class="creator-card">
+                        <div class="creator-avatar">DL</div>
+                        <div class="creator-info">
+                            <h4>Daylife Sims</h4>
+                            <p>Cheveux Maxis Match</p>
+                            <span class="mod-downloads">850K+ téléchargements</span>
+                        </div>
+                    </div>
+                    <div class="creator-card">
+                        <div class="creator-avatar">OK</div>
+                        <div class="creator-info">
+                            <h4>Okruee</h4>
+                            <p>Vêtements & Accessoires</p>
+                            <span class="mod-downloads">720K+ téléchargements</span>
+                        </div>
+                    </div>
+                    <div class="creator-card">
+                        <div class="creator-avatar">ST</div>
+                        <div class="creator-info">
+                            <h4>Simstrouble</h4>
+                            <p>Cheveux & Maquillage</p>
+                            <span class="mod-downloads">680K+ téléchargements</span>
+                        </div>
+                    </div>
+                    <div class="creator-card">
+                        <div class="creator-avatar">TM</div>
+                        <div class="creator-info">
+                            <h4>TwistedMexi</h4>
+                            <p>Mods de Construction</p>
+                            <span class="mod-downloads">550K+ téléchargements</span>
+                        </div>
+                    </div>
+                    <div class="creator-card">
+                        <div class="creator-avatar">LS</div>
+                        <div class="creator-info">
+                            <h4>LittleMsSam</h4>
+                            <p>Mods de Gameplay</p>
+                            <span class="mod-downloads">490K+ téléchargements</span>
+                        </div>
+                    </div>
+                    <div class="creator-card">
+                        <div class="creator-avatar">DP</div>
+                        <div class="creator-info">
+                            <h4>Deaderpool</h4>
+                            <p>MC Command Center</p>
+                            <span class="mod-downloads">2.5M+ téléchargements</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Creator Spotlight -->
+        <section class="content-section section-alt">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Focus Créateur</h2>
+                    <p>Découvrez le travail d'un créateur exceptionnel</p>
+                </div>
+                
+                <div class="feature-card" style="text-align: left; display: flex; align-items: center; gap: 2rem;">
+                    <div class="creator-avatar" style="width: 100px; height: 100px; font-size: 2.5rem;">DL</div>
+                    <div>
+                        <h3>Daylife Sims</h3>
+                        <p>Créatrice spécialisée dans les cheveux de style Maxis Match, Daylife Sims est reconnue pour ses coiffures réalistes et parfaitement intégrées au style original du jeu. Avec plus de 100 créations uniques, elle est l'une des artistes les plus appréciées de la communauté.</p>
+                        <div style="margin-top: 1.5rem;">
+                            <a href="#" class="btn btn-small">Voir le Portfolio</a>
+                            <a href="#" class="btn-link">Suivre</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Page Quiz -->
+    <div id="quiz" class="page-content">
+        <!-- Page Header -->
+        <section class="page-header">
+            <div class="container">
+                <div class="breadcrumb">
+                    <a href="#" data-page="home">Accueil</a> / <span>Quiz</span>
+                </div>
+                <h1>Quiz Sims 4</h1>
+                <p>Testez vos connaissances sur l'univers des Sims</p>
+            </div>
+        </section>
+
+        <!-- Quiz Section -->
+        <section class="content-section">
+            <div class="container">
+                <div class="quiz-container">
+                    <div class="quiz-header">
+                        <h3>Êtes-vous un expert des Sims ?</h3>
+                        <p>Répondez à ces questions pour le découvrir !</p>
+                    </div>
+                    
+                    <div class="progress-bar">
+                        <div class="progress" id="quiz-progress"></div>
+                    </div>
+                    
+                    <div class="question" id="quiz-question">
+                        Les Sims 4 sont sortis en...
+                    </div>
+                    
+                    <div class="options" id="quiz-options">
+                        <div class="option" data-value="0">2013</div>
+                        <div class="option" data-value="1">2014</div>
+                        <div class="option" data-value="2">2015</div>
+                    </div>
+                    
+                    <div class="quiz-actions">
+                        <button class="btn" id="prev-btn" disabled>Précédent</button>
+                        <button class="btn" id="next-btn">Suivant</button>
+                    </div>
+                    
+                    <div class="result" id="quiz-result" style="display: none;">
+                        <h3>Résultat du Quiz</h3>
+                        <div class="result-score" id="quiz-score">85%</div>
+                        <p id="quiz-message">Félicitations ! Vous êtes un véritable expert des Sims !</p>
+                        <button class="btn" id="restart-btn">Recommencer le Quiz</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Plumbob Nexus</h3>
+                    <p>Votre ressource ultime pour Les Sims 4. Mods, contenus personnalisés, astuces et créations de la communauté.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Ressources</h3>
+                    <ul>
+                        <li><a href="#" data-page="mods">Mods Populaires</a></li>
+                        <li><a href="#" data-page="cc">Contenu Vérifié</a></li>
+                        <li><a href="#" data-page="builds">Tutoriels</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Guides d'installation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Communauté</h3>
+                    <ul>
+                        <li><a href="#" data-page="creators">Créateurs</a></li>
+                        <li><a href="#">Forum</a></li>
+                        <li><a href="#">Événements</a></li>
+                        <li><a href="#">Concours</a></li>
+                        <li><a href="#">Devenir Créateur</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Signaler un problème</a></li>
+                        <li><a href="#">Politique de confidentialité</a></li>
+                        <li><a href="#">Conditions d'utilisation</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Plumbob Nexus. Tous droits réservés. Les Sims 4 est une marque déposée d'Electronic Arts Inc.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation between pages
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-link, .feature-link, .card-link, .btn[data-page]');
+            const pageContents = document.querySelectorAll('.page-content');
+            
+            // Function to show a specific page
+            function showPage(pageId) {
+                // Hide all pages
+                pageContents.forEach(page => {
+                    page.classList.remove('active');
+                });
+                
+                // Show the selected page
+                const targetPage = document.getElementById(pageId);
+                if (targetPage) {
+                    targetPage.classList.add('active');
+                }
+                
+                // Update active nav link
+                navLinks.forEach(link => {
+                    if (link.getAttribute('data-page') === pageId) {
+                        link.classList.add('active');
+                    } else {
+                        link.classList.remove('active');
+                    }
+                });
+                
+                // Scroll to top
+                window.scrollTo(0, 0);
+            }
+            
+            // Add click event to all navigation links
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetPage = this.getAttribute('data-page');
+                    if (targetPage) {
+                        showPage(targetPage);
+                    }
+                });
+            });
+            
+            // Quiz functionality
+            const quizQuestions = [
+                {
+                    question: "Les Sims 4 sont sortis en...",
+                    options: ["2013", "2014", "2015"],
+                    correct: 1
+                },
+                {
+                    question: "La triche qui donne 50 000 § s'appelle :",
+                    options: ["kaching", "rosebud", "motherlode"],
+                    correct: 2
+                },
+                {
+                    question: "Le Plumbob est en forme de :",
+                    options: ["Triangle", "Cercle", "Diamant"],
+                    correct: 2
+                },
+                {
+                    question: "Premier pack d'extension sorti ?",
+                    options: ["Get to Work", "Get Together", "City Living"],
+                    correct: 0
+                },
+                {
+                    question: "Le mod le plus téléchargé de tous les temps :",
+                    options: ["MC Command Center", "WickedWhims", "Slice of Life"],
+                    correct: 0
+                }
+            ];
+            
+            let currentQuestionIndex = 0;
+            let userAnswers = [];
+            
+            const questionElement = document.getElementById('quiz-question');
+            const optionsElement = document.getElementById('quiz-options');
+            const progressElement = document.getElementById('quiz-progress');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const resultElement = document.getElementById('quiz-result');
+            const scoreElement = document.getElementById('quiz-score');
+            const messageElement = document.getElementById('quiz-message');
+            const restartBtn = document.getElementById('restart-btn');
+            
+            function loadQuestion() {
+                const currentQuestion = quizQuestions[currentQuestionIndex];
+                questionElement.textContent = currentQuestion.question;
+                
+                optionsElement.innerHTML = '';
+                currentQuestion.options.forEach((option, index) => {
+                    const optionElement = document.createElement('div');
+                    optionElement.className = 'option';
+                    optionElement.textContent = option;
+                    optionElement.setAttribute('data-value', index);
+                    
+                    // Check if user has already answered this question
+                    if (userAnswers[currentQuestionIndex] === index) {
+                        optionElement.classList.add('selected');
+                    }
+                    
+                    optionElement.addEventListener('click', function() {
+                        // Remove selected class from all options
+                        document.querySelectorAll('.option').forEach(opt => {
+                            opt.classList.remove('selected');
+                        });
+                        
+                        // Add selected class to clicked option
+                        this.classList.add('selected');
+                        
+                        // Store user's answer
+                        userAnswers[currentQuestionIndex] = parseInt(this.getAttribute('data-value'));
+                        
+                        // Enable next button
+                        nextBtn.disabled = false;
+                    });
+                    
+                    optionsElement.appendChild(optionElement);
+                });
+                
+                // Update progress
+                progressElement.style.width = `${((currentQuestionIndex + 1) / quizQuestions.length) * 100}%`;
+                
+                // Update buttons
+                prevBtn.disabled = currentQuestionIndex === 0;
+                nextBtn.textContent = currentQuestionIndex === quizQuestions.length - 1 ? 'Terminer' : 'Suivant';
+            }
+            
+            function showResult() {
+                // Calculate score
+                let correctAnswers = 0;
+                userAnswers.forEach((answer, index) => {
+                    if (answer === quizQuestions[index].correct) {
+                        correctAnswers++;
+                    }
+                });
+                
+                const score = Math.round((correctAnswers / quizQuestions.length) * 100);
+                scoreElement.textContent = `${score}%`;
+                
+                // Set message based on score
+                if (score >= 90) {
+                    messageElement.textContent = "Félicitations ! Vous êtes un véritable expert des Sims !";
+                } else if (score >= 70) {
+                    messageElement.textContent = "Excellent ! Vous connaissez très bien l'univers des Sims.";
+                } else if (score >= 50) {
+                    messageElement.textContent = "Pas mal ! Vous avez de bonnes connaissances sur les Sims.";
+                } else {
+                    messageElement.textContent = "Continuez à explorer l'univers des Sims pour améliorer votre score !";
+                }
+                
+                // Show result and hide quiz
+                document.querySelector('.quiz-header').style.display = 'none';
+                document.querySelector('.progress-bar').style.display = 'none';
+                questionElement.style.display = 'none';
+                optionsElement.style.display = 'none';
+                document.querySelector('.quiz-actions').style.display = 'none';
+                resultElement.style.display = 'block';
+            }
+            
+            // Event listeners for quiz buttons
+            prevBtn.addEventListener('click', function() {
+                if (currentQuestionIndex > 0) {
+                    currentQuestionIndex--;
+                    loadQuestion();
+                }
+            });
+            
+            nextBtn.addEventListener('click', function() {
+                if (currentQuestionIndex < quizQuestions.length - 1) {
+                    currentQuestionIndex++;
+                    loadQuestion();
+                    nextBtn.disabled = true;
+                } else {
+                    showResult();
+                }
+            });
+            
+            restartBtn.addEventListener('click', function() {
+                currentQuestionIndex = 0;
+                userAnswers = [];
+                
+                // Reset display
+                document.querySelector('.quiz-header').style.display = 'block';
+                document.querySelector('.progress-bar').style.display = 'block';
+                questionElement.style.display = 'block';
+                optionsElement.style.display = 'block';
+                document.querySelector('.quiz-actions').style.display = 'flex';
+                resultElement.style.display = 'none';
+                
+                loadQuestion();
+                nextBtn.disabled = true;
+            });
+            
+            // Initialize quiz
+            if (questionElement) {
+                loadQuestion();
+                nextBtn.disabled = true;
+            }
+            
+            // Initialize page
+            showPage('home');
+        });
+    </script>
+</body>
+</html>
