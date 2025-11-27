@@ -620,14 +620,16 @@
             font-size: 0.9rem;
         }
 
-        /* Quiz */
+        /* Quiz Styles */
         .quiz-container {
             background-color: white;
             border-radius: var(--border-radius);
             padding: 2.5rem;
             box-shadow: var(--shadow);
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
+            position: relative;
+            overflow: hidden;
         }
 
         .quiz-header {
@@ -635,45 +637,90 @@
             margin-bottom: 2rem;
         }
 
-        .progress-bar {
-            height: 8px;
-            background-color: var(--light);
-            border-radius: 4px;
+        .quiz-header h2 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .quiz-header p {
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+
+        .progress-container {
             margin-bottom: 2rem;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .progress-bar {
+            height: 10px;
+            background-color: var(--light);
+            border-radius: 5px;
             overflow: hidden;
         }
 
         .progress {
             height: 100%;
-            background-color: var(--accent);
+            background: linear-gradient(90deg, var(--accent), var(--primary));
             width: 0%;
             transition: width 0.5s ease;
+            border-radius: 5px;
+        }
+
+        .question-container {
+            margin-bottom: 2rem;
+            text-align: center;
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .question {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            text-align: center;
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+            line-height: 1.4;
         }
 
-        .options {
+        .options-grid {
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: repeat(2, 1fr);
             gap: 1rem;
             margin-bottom: 2rem;
         }
 
+        @media (max-width: 768px) {
+            .options-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         .option {
-            padding: 1rem 1.5rem;
+            padding: 1.2rem 1.5rem;
             background-color: var(--light);
             border-radius: var(--border-radius);
             cursor: pointer;
             transition: var(--transition);
             border: 2px solid transparent;
+            text-align: left;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
         }
 
         .option:hover {
             background-color: #e8ecef;
+            transform: translateY(-2px);
         }
 
         .option.selected {
@@ -681,26 +728,163 @@
             background-color: rgba(2, 195, 154, 0.1);
         }
 
+        .option.correct {
+            border-color: #28a745;
+            background-color: rgba(40, 167, 69, 0.1);
+        }
+
+        .option.incorrect {
+            border-color: #dc3545;
+            background-color: rgba(220, 53, 69, 0.1);
+        }
+
+        .option-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
         .quiz-actions {
             display: flex;
             justify-content: space-between;
+            align-items: center;
         }
 
-        .result {
+        .result-container {
             text-align: center;
             padding: 2rem;
+            display: none;
         }
 
-        .result h3 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
+        .result-container.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
         }
 
         .result-score {
-            font-size: 3rem;
+            font-size: 4rem;
             font-weight: 700;
             color: var(--accent);
             margin: 1.5rem 0;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .result-title {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .result-message {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .result-details {
+            background-color: var(--light);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .result-details h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .result-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 1rem;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .feedback-container {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background-color: rgba(2, 195, 154, 0.1);
+            border-radius: var(--border-radius);
+            border-left: 4px solid var(--accent);
+        }
+
+        .feedback-title {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .feedback-text {
+            color: var(--dark);
+        }
+
+        .sims-character {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            bottom: -30px;
+            right: -30px;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .plumbob {
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 80px;
+            height: 80px;
+            background: var(--accent);
+            clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .pulse {
+            animation: pulse 1.5s infinite;
         }
 
         /* Footer */
@@ -821,6 +1005,18 @@
                 max-width: 250px;
                 text-align: center;
             }
+            
+            .quiz-container {
+                padding: 1.5rem;
+            }
+            
+            .question {
+                font-size: 1.4rem;
+            }
+            
+            .result-stats {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 576px) {
@@ -842,6 +1038,27 @@
             
             .stat-number {
                 font-size: 2.5rem;
+            }
+            
+            .quiz-header h2 {
+                font-size: 1.8rem;
+            }
+            
+            .question {
+                font-size: 1.2rem;
+            }
+            
+            .option {
+                padding: 1rem;
+                font-size: 1rem;
+            }
+            
+            .result-score {
+                font-size: 3rem;
+            }
+            
+            .result-title {
+                font-size: 1.8rem;
             }
         }
     </style>
@@ -1487,8 +1704,8 @@
                 <div class="breadcrumb">
                     <a href="#" data-page="home">Accueil</a> / <span>Quiz</span>
                 </div>
-                <h1>Quiz Sims 4</h1>
-                <p>Testez vos connaissances sur l'univers des Sims</p>
+                <h1>Quiz Sims 4 - Personnages & Gameplay</h1>
+                <p>Testez vos connaissances sur l'univers des Sims 4 !</p>
             </div>
         </section>
 
@@ -1496,35 +1713,81 @@
         <section class="content-section">
             <div class="container">
                 <div class="quiz-container">
+                    <div class="plumbob"></div>
+                    <div class="sims-character">
+                        <i class="fas fa-user" style="font-size: 150px; color: var(--accent);"></i>
+                    </div>
+                    
                     <div class="quiz-header">
-                        <h3>Êtes-vous un expert des Sims ?</h3>
-                        <p>Répondez à ces questions pour le découvrir !</p>
+                        <h2>Êtes-vous un expert des Sims ?</h2>
+                        <p>Répondez à ces questions sur les personnages et le gameplay pour le découvrir !</p>
                     </div>
                     
-                    <div class="progress-bar">
-                        <div class="progress" id="quiz-progress"></div>
+                    <div class="progress-container">
+                        <div class="progress-info">
+                            <span id="progress-text">Question 1 sur 10</span>
+                            <span id="score-text">Score: 0</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress" id="quiz-progress"></div>
+                        </div>
                     </div>
                     
-                    <div class="question" id="quiz-question">
-                        Les Sims 4 sont sortis en...
+                    <div class="question-container">
+                        <div class="question" id="quiz-question">
+                            Chargement de la question...
+                        </div>
                     </div>
                     
-                    <div class="options" id="quiz-options">
-                        <div class="option" data-value="0">2013</div>
-                        <div class="option" data-value="1">2014</div>
-                        <div class="option" data-value="2">2015</div>
+                    <div class="options-grid" id="quiz-options">
+                        <!-- Les options seront générées dynamiquement -->
+                    </div>
+                    
+                    <div class="feedback-container" id="feedback-container" style="display: none;">
+                        <div class="feedback-title" id="feedback-title"></div>
+                        <div class="feedback-text" id="feedback-text"></div>
                     </div>
                     
                     <div class="quiz-actions">
-                        <button class="btn" id="prev-btn" disabled>Précédent</button>
-                        <button class="btn" id="next-btn">Suivant</button>
+                        <button class="btn btn-outline" id="hint-btn">
+                            <i class="fas fa-lightbulb"></i> Indice
+                        </button>
+                        <button class="btn" id="next-btn" disabled>
+                            Question Suivante <i class="fas fa-arrow-right"></i>
+                        </button>
                     </div>
                     
-                    <div class="result" id="quiz-result" style="display: none;">
-                        <h3>Résultat du Quiz</h3>
-                        <div class="result-score" id="quiz-score">85%</div>
-                        <p id="quiz-message">Félicitations ! Vous êtes un véritable expert des Sims !</p>
-                        <button class="btn" id="restart-btn">Recommencer le Quiz</button>
+                    <div class="result-container" id="quiz-result">
+                        <h2 class="result-title" id="result-title">Quiz Terminé !</h2>
+                        <div class="result-score" id="quiz-score">0%</div>
+                        <p class="result-message" id="quiz-message"></p>
+                        
+                        <div class="result-details">
+                            <h3>Vos Résultats</h3>
+                            <div class="result-stats">
+                                <div class="stat">
+                                    <div class="stat-number" id="correct-answers">0</div>
+                                    <div class="stat-label">Réponses Correctes</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-number" id="total-questions">10</div>
+                                    <div class="stat-label">Questions Total</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-number" id="completion-time">0s</div>
+                                    <div class="stat-label">Temps</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="quiz-actions">
+                            <button class="btn btn-outline" id="review-btn">
+                                <i class="fas fa-redo"></i> Revoir les Réponses
+                            </button>
+                            <button class="btn" id="restart-btn">
+                                <i class="fas fa-sync-alt"></i> Recommencer le Quiz
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1581,7 +1844,7 @@
         </div>
     </footer>
 
-    <script>
+   <script>
         // Navigation between pages
         document.addEventListener('DOMContentLoaded', function() {
             const navLinks = document.querySelectorAll('.nav-link, .feature-link, .card-link, .btn[data-page]');
@@ -1598,6 +1861,11 @@
                 const targetPage = document.getElementById(pageId);
                 if (targetPage) {
                     targetPage.classList.add('active');
+                    
+                    // Si on navigue vers le quiz, l'initialiser
+                    if (pageId === 'quiz') {
+                        setTimeout(initQuiz, 100);
+                    }
                 }
                 
                 // Update active nav link
@@ -1627,163 +1895,346 @@
             // Quiz functionality
             const quizQuestions = [
                 {
-                    question: "Les Sims 4 sont sortis en...",
-                    options: ["2013", "2014", "2015"],
-                    correct: 1
+                    question: "Quel personnage emblématique des Sims a mystérieusement disparu dans les Sims 2 ?",
+                    options: [
+                        "Bella Goth",
+                        "Mortimer Goth", 
+                        "Don Lothario",
+                        "Cassandra Goth"
+                    ],
+                    correct: 0,
+                    hint: "Cette disparition est l'un des plus grands mystères de l'univers Sims !",
+                    feedback: "Correct ! Bella Goth a mystérieusement disparu dans Les Sims 2, créant l'un des plus grands mystères de la franchise."
                 },
                 {
-                    question: "La triche qui donne 50 000 § s'appelle :",
-                    options: ["kaching", "rosebud", "motherlode"],
-                    correct: 2
+                    question: "Quelle interaction secrète peut tuer un Sim s'il est trop énervé ?",
+                    options: [
+                        "Mort par rage",
+                        "Crise cardiaque",
+                        "Explosion de colère", 
+                        "Foudre de la fureur"
+                    ],
+                    correct: 2,
+                    hint: "Cette mort émotionnelle est liée à la colère !",
+                    feedback: "Exact ! Un Sim peut mourir d'explosion de colère s'il est trop énervé."
                 },
                 {
-                    question: "Le Plumbob est en forme de :",
-                    options: ["Triangle", "Cercle", "Diamant"],
-                    correct: 2
+                    question: "Quel est le nom du monde qui vient avec le pack 'Île Paradisiaque' ?",
+                    options: [
+                        "Sulani",
+                        "Tartosa",
+                        "Selvadorada", 
+                        "Mt. Komorebi"
+                    ],
+                    correct: 0,
+                    hint: "Ce monde tropical permet de nager dans l'océan !",
+                    feedback: "Oui ! Sulani est le monde paradisiaque du pack Île Paradisiaque."
                 },
                 {
-                    question: "Premier pack d'extension sorti ?",
-                    options: ["Get to Work", "Get Together", "City Living"],
-                    correct: 0
+                    question: "Quelle carrière vous permet de contrôler la vie et la mort des Sims ?",
+                    options: [
+                        "Médecin",
+                        "Scientifique",
+                        "Détective", 
+                        "Astronaute"
+                    ],
+                    correct: 1,
+                    hint: "Cette carrière du pack 'Au Travail' permet de créer des inventions étranges !",
+                    feedback: "Correct ! La carrière de scientifique permet de créer une machine à cloner et même une machine à ressusciter !"
                 },
                 {
-                    question: "Le mod le plus téléchargé de tous les temps :",
-                    options: ["MC Command Center", "WickedWhims", "Slice of Life"],
-                    correct: 0
+                    question: "Quel trait permet à un Sim de parler aux plantes ?",
+                    options: [
+                        "Amoureux de la nature",
+                        "Jardinier expert", 
+                        "Maître botaniste",
+                        "Sorcier vert"
+                    ],
+                    correct: 0,
+                    hint: "Ce trait fait partie des traits de bonus de compétence !",
+                    feedback: "Exact ! Le trait 'Amoureux de la nature' permet de parler aux plantes et d'obtenir de meilleures récoltes."
+                },
+                {
+                    question: "Comment s'appelle le bébé alien qui peut apparaître si votre Sim est enlevé ?",
+                    options: [
+                        "Pollinator X-12",
+                        "Visiteur Stellaire", 
+                        "Bébé Étoile",
+                        "Enfant des Étoiles"
+                    ],
+                    correct: 1,
+                    hint: "Cet événement peut arriver avec le pack 'À la Fac' !",
+                    feedback: "Oui ! Un 'Visiteur Stellaire' peut naître après qu'un Sim ait été enlevé par des aliens."
+                },
+                {
+                    question: "Quel est le cheat pour débloquer toutes les aspirations ?",
+                    options: [
+                        "aspirations.complete_all",
+                        "aspirations.complete_current_milestone", 
+                        "stats.set_skill_level Major_Fishing 10",
+                        "traits.equip_trait trait_Animal_Whisperer"
+                    ],
+                    correct: 1,
+                    hint: "Ce cheat termine l'étape actuelle de l'aspiration !",
+                    feedback: "Correct ! 'aspirations.complete_current_milestone' permet de terminer l'étape actuelle de l'aspiration."
+                },
+                {
+                    question: "Quel pack a introduit les pouvoirs surnaturels comme la magie et les sorts ?",
+                    options: [
+                        "Royaume de la Magie",
+                        "Au Travail", 
+                        "Vivre en Ville",
+                        "Saisons"
+                    ],
+                    correct: 0,
+                    hint: "Ce pack permet de devenir sorcier et de jeter des sorts !",
+                    feedback: "Exact ! Le pack 'Royaume de la Magie' a introduit la magie, les sorts et le monde de Glimmerbrook."
+                },
+                {
+                    question: "Quelle interaction permet aux Sims de former une alliance secrète ?",
+                    options: [
+                        "Proposer une alliance",
+                        "Devenir complices", 
+                        "Créer un club secret",
+                        "Former un pacte"
+                    ],
+                    correct: 1,
+                    hint: "Cette interaction renforce les relations sociales !",
+                    feedback: "Oui ! 'Devenir complices' permet aux Sims de former une relation spéciale avec des bonus sociaux."
+                },
+                {
+                    question: "Quel est le nom du chat de la famille Caliente ?",
+                    options: [
+                        "Moustache",
+                        "Cappuccino", 
+                        "Fluffy",
+                        "Croquette"
+                    ],
+                    correct: 0,
+                    hint: "Ce chat est présent depuis les premiers Sims !",
+                    feedback: "Correct ! Moustache est le chat emblématique de la famille Caliente, présent depuis Les Sims 1."
                 }
             ];
-            
+
             let currentQuestionIndex = 0;
+            let userScore = 0;
             let userAnswers = [];
-            
+            let quizStartTime;
+            let quizEndTime;
+
+            // Éléments DOM
+            const progressText = document.getElementById('progress-text');
+            const scoreText = document.getElementById('score-text');
+            const progressBar = document.getElementById('quiz-progress');
             const questionElement = document.getElementById('quiz-question');
             const optionsElement = document.getElementById('quiz-options');
-            const progressElement = document.getElementById('quiz-progress');
-            const prevBtn = document.getElementById('prev-btn');
+            const feedbackContainer = document.getElementById('feedback-container');
+            const feedbackTitle = document.getElementById('feedback-title');
+            const feedbackText = document.getElementById('feedback-text');
+            const hintBtn = document.getElementById('hint-btn');
             const nextBtn = document.getElementById('next-btn');
-            const resultElement = document.getElementById('quiz-result');
+            const resultContainer = document.getElementById('quiz-result');
+            const resultTitle = document.getElementById('result-title');
             const scoreElement = document.getElementById('quiz-score');
             const messageElement = document.getElementById('quiz-message');
+            const correctAnswersElement = document.getElementById('correct-answers');
+            const totalQuestionsElement = document.getElementById('total-questions');
+            const completionTimeElement = document.getElementById('completion-time');
+            const reviewBtn = document.getElementById('review-btn');
             const restartBtn = document.getElementById('restart-btn');
-            
+
+            // Initialisation du quiz
+            function initQuiz() {
+                currentQuestionIndex = 0;
+                userScore = 0;
+                userAnswers = [];
+                quizStartTime = new Date();
+                
+                // Réafficher les éléments du quiz
+                document.querySelector('.question-container').style.display = 'flex';
+                document.querySelector('.options-grid').style.display = 'grid';
+                document.querySelector('.quiz-actions').style.display = 'flex';
+                resultContainer.classList.remove('active');
+                feedbackContainer.style.display = 'none';
+                
+                updateScore();
+                loadQuestion();
+            }
+
+            // Charger une question
             function loadQuestion() {
+                if (currentQuestionIndex >= quizQuestions.length) {
+                    showResults();
+                    return;
+                }
+                
                 const currentQuestion = quizQuestions[currentQuestionIndex];
+                
+                // Mettre à jour la progression
+                progressText.textContent = `Question ${currentQuestionIndex + 1} sur ${quizQuestions.length}`;
+                progressBar.style.width = `${((currentQuestionIndex + 1) / quizQuestions.length) * 100}%`;
+                
+                // Afficher la question
                 questionElement.textContent = currentQuestion.question;
                 
+                // Générer les options
                 optionsElement.innerHTML = '';
                 currentQuestion.options.forEach((option, index) => {
                     const optionElement = document.createElement('div');
                     optionElement.className = 'option';
-                    optionElement.textContent = option;
+                    optionElement.innerHTML = `
+                        <div class="option-icon">${String.fromCharCode(65 + index)}</div>
+                        <span>${option}</span>
+                    `;
                     optionElement.setAttribute('data-value', index);
                     
-                    // Check if user has already answered this question
-                    if (userAnswers[currentQuestionIndex] === index) {
-                        optionElement.classList.add('selected');
-                    }
-                    
-                    optionElement.addEventListener('click', function() {
-                        // Remove selected class from all options
-                        document.querySelectorAll('.option').forEach(opt => {
-                            opt.classList.remove('selected');
-                        });
-                        
-                        // Add selected class to clicked option
-                        this.classList.add('selected');
-                        
-                        // Store user's answer
-                        userAnswers[currentQuestionIndex] = parseInt(this.getAttribute('data-value'));
-                        
-                        // Enable next button
-                        nextBtn.disabled = false;
-                    });
+                    optionElement.addEventListener('click', () => selectOption(optionElement, index));
                     
                     optionsElement.appendChild(optionElement);
                 });
                 
-                // Update progress
-                progressElement.style.width = `${((currentQuestionIndex + 1) / quizQuestions.length) * 100}%`;
+                // Réinitialiser le bouton suivant
+                nextBtn.disabled = true;
+                nextBtn.textContent = currentQuestionIndex === quizQuestions.length - 1 ? 
+                    'Terminer le Quiz' : 'Question Suivante';
                 
-                // Update buttons
-                prevBtn.disabled = currentQuestionIndex === 0;
-                nextBtn.textContent = currentQuestionIndex === quizQuestions.length - 1 ? 'Terminer' : 'Suivant';
+                // Réinitialiser le feedback
+                feedbackContainer.style.display = 'none';
             }
-            
-            function showResult() {
-                // Calculate score
-                let correctAnswers = 0;
-                userAnswers.forEach((answer, index) => {
-                    if (answer === quizQuestions[index].correct) {
-                        correctAnswers++;
-                    }
+
+            // Sélectionner une option
+            function selectOption(optionElement, optionIndex) {
+                // Désactiver toutes les options
+                document.querySelectorAll('.option').forEach(opt => {
+                    opt.style.pointerEvents = 'none';
                 });
                 
-                const score = Math.round((correctAnswers / quizQuestions.length) * 100);
-                scoreElement.textContent = `${score}%`;
+                const currentQuestion = quizQuestions[currentQuestionIndex];
+                const isCorrect = optionIndex === currentQuestion.correct;
                 
-                // Set message based on score
-                if (score >= 90) {
-                    messageElement.textContent = "Félicitations ! Vous êtes un véritable expert des Sims !";
-                } else if (score >= 70) {
-                    messageElement.textContent = "Excellent ! Vous connaissez très bien l'univers des Sims.";
-                } else if (score >= 50) {
-                    messageElement.textContent = "Pas mal ! Vous avez de bonnes connaissances sur les Sims.";
-                } else {
-                    messageElement.textContent = "Continuez à explorer l'univers des Sims pour améliorer votre score !";
+                // Marquer la réponse de l'utilisateur
+                userAnswers.push({
+                    questionIndex: currentQuestionIndex,
+                    selectedOption: optionIndex,
+                    isCorrect: isCorrect
+                });
+                
+                // Mettre à jour le score
+                if (isCorrect) {
+                    userScore++;
+                    updateScore();
                 }
                 
-                // Show result and hide quiz
-                document.querySelector('.quiz-header').style.display = 'none';
-                document.querySelector('.progress-bar').style.display = 'none';
-                questionElement.style.display = 'none';
-                optionsElement.style.display = 'none';
-                document.querySelector('.quiz-actions').style.display = 'none';
-                resultElement.style.display = 'block';
+                // Appliquer les classes de style
+                optionElement.classList.add('selected');
+                if (isCorrect) {
+                    optionElement.classList.add('correct');
+                } else {
+                    optionElement.classList.add('incorrect');
+                    
+                    // Afficher la bonne réponse
+                    document.querySelectorAll('.option')[currentQuestion.correct].classList.add('correct');
+                }
+                
+                // Afficher le feedback
+                feedbackTitle.textContent = isCorrect ? 'Correct !' : 'Incorrect';
+                feedbackTitle.style.color = isCorrect ? '#28a745' : '#dc3545';
+                feedbackText.textContent = currentQuestion.feedback;
+                feedbackContainer.style.display = 'block';
+                
+                // Activer le bouton suivant
+                nextBtn.disabled = false;
             }
-            
-            // Event listeners for quiz buttons
-            prevBtn.addEventListener('click', function() {
-                if (currentQuestionIndex > 0) {
-                    currentQuestionIndex--;
-                    loadQuestion();
-                }
-            });
-            
-            nextBtn.addEventListener('click', function() {
-                if (currentQuestionIndex < quizQuestions.length - 1) {
-                    currentQuestionIndex++;
-                    loadQuestion();
-                    nextBtn.disabled = true;
+
+            // Mettre à jour le score
+            function updateScore() {
+                scoreText.textContent = `Score: ${userScore}`;
+            }
+
+            // Afficher les résultats
+            function showResults() {
+                quizEndTime = new Date();
+                const timeDiff = (quizEndTime - quizStartTime) / 1000;
+                const minutes = Math.floor(timeDiff / 60);
+                const seconds = Math.floor(timeDiff % 60);
+                
+                const percentage = Math.round((userScore / quizQuestions.length) * 100);
+                
+                // Déterminer le titre et le message en fonction du score
+                let title, message;
+                if (percentage >= 90) {
+                    title = "Maître des Sims ! 🏆";
+                    message = "Incroyable ! Vous connaissez les Sims 4 mieux que les développeurs eux-mêmes !";
+                } else if (percentage >= 70) {
+                    title = "Expert Sims ! ⭐";
+                    message = "Excellent ! Vous maîtrisez parfaitement l'univers des Sims 4.";
+                } else if (percentage >= 50) {
+                    title = "Sims Confirmé 👍";
+                    message = "Bon score ! Vous avez de solides connaissances sur les Sims 4.";
                 } else {
-                    showResult();
+                    title = "Apprenti Sim 🌱";
+                    message = "Continuez à explorer le jeu pour découvrir tous ses secrets !";
                 }
+                
+                // Mettre à jour l'interface des résultats
+                resultTitle.textContent = title;
+                scoreElement.textContent = `${percentage}%`;
+                messageElement.textContent = message;
+                correctAnswersElement.textContent = userScore;
+                totalQuestionsElement.textContent = quizQuestions.length;
+                completionTimeElement.textContent = `${minutes > 0 ? `${minutes}m ` : ''}${seconds}s`;
+                
+                // Afficher les résultats
+                document.querySelector('.question-container').style.display = 'none';
+                document.querySelector('.options-grid').style.display = 'none';
+                document.querySelector('.quiz-actions').style.display = 'none';
+                feedbackContainer.style.display = 'none';
+                
+                resultContainer.classList.add('active');
+            }
+
+            // Gestionnaire d'indice
+            hintBtn.addEventListener('click', function() {
+                const currentQuestion = quizQuestions[currentQuestionIndex];
+                feedbackTitle.textContent = '💡 Indice';
+                feedbackTitle.style.color = '#ffc107';
+                feedbackText.textContent = currentQuestion.hint;
+                feedbackContainer.style.display = 'block';
             });
-            
-            restartBtn.addEventListener('click', function() {
+
+            // Gestionnaire du bouton suivant
+            nextBtn.addEventListener('click', function() {
+                currentQuestionIndex++;
+                loadQuestion();
+            });
+
+            // Gestionnaire du bouton revoir
+            reviewBtn.addEventListener('click', function() {
                 currentQuestionIndex = 0;
+                userScore = 0;
                 userAnswers = [];
                 
-                // Reset display
-                document.querySelector('.quiz-header').style.display = 'block';
-                document.querySelector('.progress-bar').style.display = 'block';
-                questionElement.style.display = 'block';
-                optionsElement.style.display = 'block';
+                resultContainer.classList.remove('active');
+                document.querySelector('.question-container').style.display = 'flex';
+                document.querySelector('.options-grid').style.display = 'grid';
                 document.querySelector('.quiz-actions').style.display = 'flex';
-                resultElement.style.display = 'none';
                 
+                updateScore();
                 loadQuestion();
-                nextBtn.disabled = true;
             });
-            
-            // Initialize quiz
-            if (questionElement) {
-                loadQuestion();
-                nextBtn.disabled = true;
+
+            // Gestionnaire du bouton redémarrer
+            restartBtn.addEventListener('click', function() {
+                initQuiz();
+            });
+
+            // Initialiser le quiz si la page active est le quiz au chargement
+            if (document.getElementById('quiz').classList.contains('active')) {
+                setTimeout(initQuiz, 500);
             }
-            
-            // Initialize page
-            showPage('home');
         });
     </script>
+</body>
+</html>
 </body>
 </html>
